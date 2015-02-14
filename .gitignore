@@ -27,6 +27,7 @@ sysinfo.txt
 *.pidb.meta
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+*.txt.meta
 
 # ============ #
 # OS generated #
