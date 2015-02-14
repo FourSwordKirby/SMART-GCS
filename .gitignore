@@ -11,15 +11,15 @@ sysinfo.txt
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
 [Ee]xported[Oo]bj/
-/*.csproj
-/*.unityproj
-/*.sln*
-/*.suo
-/*.tmp
-/*.user
-/*.userprefs
-/*.pidb
-/*.booproj
+*.csproj
+*.unityproj
+*.sln*
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
 
 # ============================ #
 # Unity3D generated meta files #
