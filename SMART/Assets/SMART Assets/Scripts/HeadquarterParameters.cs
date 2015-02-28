@@ -3,25 +3,19 @@ using System.Collections;
 
 public class HeadquarterParameters : MonoBehaviour {
 
-    private int health;
     private int score;
 
 	// Use this for initialization
 	void Start () {
-        health = 30;
+        this.GetComponent<Health>().setHealth(100);
         score = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (health != 30)
-        {
-            Debug.Log("I died");
-        }
+        //tracking health is done in the health script
+        if (this.GetComponent<Health>().hasNoHealth())
+            Destroy(this.gameObject);
+        Debug.Log(this.GetComponent<Health>().getHealth());
 	}
-
-    void takeDamage(int damage)
-    {
-        this.health -= damage;
-    }
 }

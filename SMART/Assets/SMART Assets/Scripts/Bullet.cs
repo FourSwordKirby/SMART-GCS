@@ -23,7 +23,14 @@ public class Bullet : MonoBehaviour {
 
 	void OnCollisionEnter (Collision collision) {
 		Debug.Log ("Collided with something.");
-		this.spawnExplosion ();
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            var enemyHealth = collision.gameObject.GetComponent<Health>();
+            enemyHealth.subtractHealth(1);
+        }
+
+		this.spawnExplosion();
 		Destroy (gameObject);
 	}
 
