@@ -23,8 +23,7 @@ public class Health : MonoBehaviour {
 		this.health += health;
 	}
 
-	void Update () {
-		if (this.health <= 0)
-			Destroy (gameObject);
+	public bool hasNoHealth() {
+		return (this.health <= 0);
 	}
 }
