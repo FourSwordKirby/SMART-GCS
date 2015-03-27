@@ -8,5 +8,6 @@ public class HUDLook : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.LookAt(cam.transform.position);
+		transform.rotation = cam.transform.rotation;
 	}
 }
