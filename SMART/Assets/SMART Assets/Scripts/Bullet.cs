@@ -1,4 +1,4 @@
-﻿// 2/6/2015 - Mark Mendell
+// 2/6/2015 - Mark Mendell
 
 using UnityEngine;
 using System.Collections;
@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
 	
 	public int duration = 5; // seconds
 	public int unitsPerSecond = 10;
+	public int damage = 1;
 	public ParticleSystem explosionSystem;
 	private GameObject explosion;
 	
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             var enemyHealth = collision.gameObject.GetComponent<Health>();
-            enemyHealth.subtractHealth(1);
+            enemyHealth.subtractHealth(damage);
         }
 
 		this.spawnExplosion();
