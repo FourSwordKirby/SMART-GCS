@@ -15,7 +15,6 @@ public class HeadquarterParameters : MonoBehaviour {
 	void Update () {
         //tracking health is done in the health script
         if (this.GetComponent<Health>().hasNoHealth())
-            Destroy(this.gameObject);
         Debug.Log(this.GetComponent<Health>().getHealth());
 	}
 }

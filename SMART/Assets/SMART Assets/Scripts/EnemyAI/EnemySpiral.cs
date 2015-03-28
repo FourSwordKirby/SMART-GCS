@@ -6,13 +6,19 @@ public class EnemySpiral : MonoBehaviour {
 	public float attackDistance;
 	public float rotateSpeed;
 	public float moveSpeed;
+	public int cooldown;
 
 	private float distance;
 	private UnityEngine.Vector3 HQpos;
 	private bool isAttack = false;
+	private int timer;
+	private int attackDamage = 5;
+	private Health hqhealth;
 
 	// Use this for initialization
 	void Start () {
+		timer = cooldown;
+		hqhealth = Headquarters.GetComponent<Health> ();
 	}
 	
 	// Update is called once per frame
@@ -20,11 +26,12 @@ public class EnemySpiral : MonoBehaviour {
 		HQpos = Headquarters.transform.position;
 		distance = Vector3.Distance(HQpos, this.transform.position);
 		if (distance <= attackDistance) {
-			if (!isAttack) {
-				isAttack = !isAttack;
-				//should play an attack animation; for now will just change color.
-				//this.renderer.material.color = Color.black;
+			isAttack = true;
+			if (timer > cooldown) {
+				hqhealth.subtractHealth(attackDamage);
+				timer = 0;
 			}
+			timer ++;
 			this.transform.LookAt (HQpos);
 		}
 		else {

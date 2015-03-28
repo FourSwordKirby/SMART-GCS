@@ -6,6 +6,7 @@ public class Hudsystem : MonoBehaviour {
 	public GameObject Hud2;
 	public GameObject Hud3;
 	public GameObject Hud4;
+	public Health health;
 
 	private int[] hudtable = new int[4];
 	public int score;
@@ -38,6 +39,7 @@ public class Hudsystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//updates score somehow
+		score = health.getHealth ();
 		int discore = score;
 		for (int i = 3; i >= 0; i--) {
 			hudtable[i] = discore % 10;

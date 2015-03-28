@@ -5,23 +5,30 @@ public class Enemy : MonoBehaviour {
 	public GameObject Headquarters;
 	public float attackDistance;
 	public float moveSpeed;
+	public int cooldown;
 
 	private float distance;
 	private bool isAttack = false;
+	private int timer = 0;
+	private int attackDamage = 5;
+	private Health hqhealth;
 
 	// Use this for initialization
 	void Start () {
+		timer = cooldown;
+		hqhealth = Headquarters.GetComponent<Health> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		distance = Vector3.Distance(Headquarters.transform.position, this.transform.position);
 		if (distance <= attackDistance) {
-			if (!isAttack) {
-				isAttack = !isAttack;
-				//should play an attack animation; for now will just change color.
-				//this.renderer.material.color = Color.black;
+			isAttack = true;
+			if (timer > cooldown) {
+				hqhealth.subtractHealth(attackDamage);
+				timer = 0;
 			}
+			timer ++;
 			this.transform.LookAt (Headquarters.transform.position);
 		}
 		else {
