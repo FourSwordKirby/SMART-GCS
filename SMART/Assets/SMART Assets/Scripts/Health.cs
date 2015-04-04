@@ -16,7 +16,9 @@ public class Health : MonoBehaviour {
 	}
 
 	public void subtractHealth(int damage) {
-		this.health -= damage;
+		if (this.health - damage >= 0) {
+			this.health -= damage;
+		}
 	}
 
 	public void addHealth(int health) {

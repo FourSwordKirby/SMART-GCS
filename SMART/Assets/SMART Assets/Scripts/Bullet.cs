@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour {
 	void Start () {
 		// Destroy the object after <duration> seconds
 		Destroy (gameObject, duration);
-		Debug.Log ("Bullet instantiated.");
+	//	Debug.Log ("Bullet instantiated.");
 	}
 
 	void Update () {
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
 		transform.Translate (Vector3.forward * Time.deltaTime * unitsPerSecond);
 	}
 
-	void OnCollisionEnter (Collision collision) {
+	void OnTriggerEnter (Collider collision) {
 		Debug.Log ("Collided with something.");
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour {
 	void spawnExplosion() {
 		ParticleSystem newExplosion = Instantiate (explosionSystem) as ParticleSystem;
 		newExplosion.transform.position = gameObject.transform.position;
+		newExplosion.transform.rotation = Quaternion.identity;
 		newExplosion.Play ();
 		Debug.Log ("Spawned an explosion.");
 	}

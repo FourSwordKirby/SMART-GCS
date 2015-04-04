@@ -13,6 +13,9 @@ public class MissileAim : MonoBehaviour {
 	
 	// http://forum.unity3d.com/threads/tank-heat-seeking-missile.144554/#post-990037
 	void Update () {
+		if (target == null) {
+			target = FindClosestEnemy ().transform;
+		}	
 		Vector3 targetDirection = target.position - gameObject.transform.position;
 		Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 		gameObject.transform.rotation = Quaternion.RotateTowards(

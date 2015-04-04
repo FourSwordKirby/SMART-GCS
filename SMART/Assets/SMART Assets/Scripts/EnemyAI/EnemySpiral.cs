@@ -7,17 +7,22 @@ public class EnemySpiral : MonoBehaviour {
 	public float rotateSpeed;
 	public float moveSpeed;
 	public int cooldown;
+	public int health;
+	public Transform explosion;
+	public int attackDamage = 5;
 
 	private float distance;
 	private UnityEngine.Vector3 HQpos;
 	private bool isAttack = false;
 	private int timer;
-	private int attackDamage = 5;
 	private Health hqhealth;
+	private Health enemyHealth;
 
 	// Use this for initialization
 	void Start () {
 		timer = cooldown;
+		enemyHealth = gameObject.AddComponent<Health>();
+		enemyHealth.setHealth(health);
 		hqhealth = Headquarters.GetComponent<Health> ();
 	}
 	
@@ -43,6 +48,10 @@ public class EnemySpiral : MonoBehaviour {
 		    this.transform.LookAt (HQpos);
 			transform.RotateAround(HQpos, Vector3.up, rotateSpeed * Time.deltaTime);
 		    this.transform.position = Vector3.MoveTowards (this.transform.position, HQpos, moveSpeed); 
-	    }
+		}
+		if (enemyHealth.hasNoHealth()) {
+			Instantiate(explosion, transform.position, Quaternion.identity);
+			Destroy(gameObject);
+		}
 	}
 }

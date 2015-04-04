@@ -6,16 +6,21 @@ public class Enemy : MonoBehaviour {
 	public float attackDistance;
 	public float moveSpeed;
 	public int cooldown;
+	public int health;
+	public Transform explosion;
+	public int attackDamage = 5;
 
 	private float distance;
 	private bool isAttack = false;
 	private int timer = 0;
-	private int attackDamage = 5;
 	private Health hqhealth;
+	private Health enemyHealth;
 
 	// Use this for initialization
 	void Start () {
 		timer = cooldown;
+		enemyHealth = gameObject.AddComponent<Health>();
+		enemyHealth.setHealth(health);
 		hqhealth = Headquarters.GetComponent<Health> ();
 	}
 	
@@ -40,5 +45,10 @@ public class Enemy : MonoBehaviour {
 		    this.transform.LookAt (Headquarters.transform.position);
 		    this.transform.position = Vector3.MoveTowards (this.transform.position, Headquarters.transform.position, moveSpeed); 
 	    }
+
+		if (enemyHealth.hasNoHealth()) {
+			Instantiate(explosion, transform.position, Quaternion.identity);
+			Destroy(gameObject);
+		}
 	}
 }
