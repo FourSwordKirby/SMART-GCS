@@ -23,8 +23,6 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider collision) {
-		Debug.Log ("Collided with something.");
-
         if (collision.gameObject.CompareTag("Enemy"))
         {
             var enemyHealth = collision.gameObject.GetComponent<Health>();
@@ -40,6 +38,5 @@ public class Bullet : MonoBehaviour {
 		newExplosion.transform.position = gameObject.transform.position;
 		newExplosion.transform.rotation = Quaternion.identity;
 		newExplosion.Play ();
-		Debug.Log ("Spawned an explosion.");
 	}
 }

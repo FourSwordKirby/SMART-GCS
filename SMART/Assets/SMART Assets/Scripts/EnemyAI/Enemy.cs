@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timer = cooldown;
+		Headquarters = GameObject.FindGameObjectWithTag ("Player");
 		enemyHealth = gameObject.AddComponent<Health>();
 		enemyHealth.setHealth(health);
 		hqhealth = Headquarters.GetComponent<Health> ();

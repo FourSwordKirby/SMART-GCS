@@ -14,7 +14,8 @@ public class HeadquarterParameters : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //tracking health is done in the health script
-        if (this.GetComponent<Health>().hasNoHealth())
-        Debug.Log(this.GetComponent<Health>().getHealth());
+        if (this.GetComponent<Health>().hasNoHealth()) {
+
+		}
 	}
 }

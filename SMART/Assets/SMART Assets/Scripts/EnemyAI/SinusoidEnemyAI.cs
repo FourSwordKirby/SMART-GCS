@@ -23,6 +23,7 @@ public class SinusoidEnemyAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//enemy.renderer.material.color = Color.black;
+		hq = GameObject.FindGameObjectWithTag ("Player");
 		totalDist = Vector3.Distance (enemy.transform.position, hq.transform.position);
 		pathPosition = enemy.transform.position;
 		enemy.transform.LookAt(hq.transform);
