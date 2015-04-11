@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: af57b3ab91871294397ecad9287ed4e4
+guid: ddaa0f4704347584aaf01da667051642
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -461,7 +461,7 @@ ModelImporter:
     4300102: polySurface49
     4300104: polySurface50
     7400000: Flying
-    7400002: Attack
+    7400002: Attacking
     7400004: Crawling
     9500000: //RootNode
     11100000: //RootNode
@@ -965,7 +965,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Attack
+      name: Attacking
       takeName: Take 001
       firstFrame: 120
       lastFrame: 220

@@ -5,6 +5,8 @@ public class DecayingSinusoidEnemyAI : MonoBehaviour {
 
 	public GameObject hq;
 	public GameObject enemy;
+	public Animation enemyAnim;
+	public float animSpeed;
 	public float forwardSpeed;
 	public float startAmplitude;
 	public float attackDistance;
@@ -31,6 +33,9 @@ public class DecayingSinusoidEnemyAI : MonoBehaviour {
 		enemyHealth = gameObject.AddComponent<Health>();
 		enemyHealth.setHealth(health);
 		hqhealth = hq.GetComponent<Health> ();
+		enemyAnim.animation ["Flying"].speed = 2.0f;
+		enemyAnim.animation ["Attacking"].speed = 2.0f;
+		enemyAnim.animation ["Attacking"].speed = 2.0f;
 	}
 	
 	// Update is called once per frame
@@ -39,6 +44,7 @@ public class DecayingSinusoidEnemyAI : MonoBehaviour {
 		Vector3 temp = new Vector3 (0,0,0);
 		if (dist <= attackDistance) {
 			isAttack = true;
+			enemyAnim.animation.CrossFade("Attacking",0.2f);
 			if (timer > cooldown) {
 				hqhealth.subtractHealth(attackDamage);
 				timer = 0;
@@ -47,11 +53,7 @@ public class DecayingSinusoidEnemyAI : MonoBehaviour {
 			this.transform.LookAt (hq.transform.position);
 		}
 		else {
-			if (isAttack) {
-				isAttack = !isAttack;
-				//should stop attacking; for now will just change color back. 
-				//this.renderer.material.color = Color.white;
-			}
+			enemyAnim.animation.CrossFade("Flying",0.2f);
 			Vector3 oldPosition = pathPosition;
 			pathPosition = Vector3.MoveTowards (pathPosition, hq.transform.position, forwardSpeed);
 			float rise = pathPosition.x - oldPosition.x;

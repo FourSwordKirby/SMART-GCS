@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 	public GameObject Headquarters;
+	public Animation enemyAnim;
+	public float animSpeed;
 	public float attackDistance;
 	public float moveSpeed;
 	public int cooldown;
@@ -23,6 +25,9 @@ public class Enemy : MonoBehaviour {
 		enemyHealth = gameObject.AddComponent<Health>();
 		enemyHealth.setHealth(health);
 		hqhealth = Headquarters.GetComponent<Health> ();
+		enemyAnim.animation ["Flying"].speed = animSpeed;
+		enemyAnim.animation ["Attacking"].speed = animSpeed;
+		enemyAnim.animation ["Crawling"].speed = animSpeed;
 	}
 	
 	// Update is called once per frame
@@ -30,6 +35,7 @@ public class Enemy : MonoBehaviour {
 		distance = Vector3.Distance(Headquarters.transform.position, this.transform.position);
 		if (distance <= attackDistance) {
 			isAttack = true;
+			enemyAnim.animation.CrossFade("Attacking",0.2f);
 			if (timer > cooldown) {
 				hqhealth.subtractHealth(attackDamage);
 				timer = 0;
@@ -38,11 +44,7 @@ public class Enemy : MonoBehaviour {
 			this.transform.LookAt (Headquarters.transform.position);
 		}
 		else {
-			if (isAttack) {
-				isAttack = !isAttack;
-				//should stop attacking; for now will just change color back. 
-				//this.renderer.material.color = Color.white;
-			}
+			enemyAnim.animation.CrossFade("Flying",0.2f);
 		    this.transform.LookAt (Headquarters.transform.position);
 		    this.transform.position = Vector3.MoveTowards (this.transform.position, Headquarters.transform.position, moveSpeed); 
 	    }
