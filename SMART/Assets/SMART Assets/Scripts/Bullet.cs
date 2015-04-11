@@ -9,17 +9,25 @@ public class Bullet : MonoBehaviour {
 	public int unitsPerSecond = 10;
 	public int damage = 1;
 	public ParticleSystem explosionSystem;
-	private GameObject explosion;
-	
+	public ParticleSystem missileTrail;
+	private int frameCounter = 0;
+
 	void Start () {
 		// Destroy the object after <duration> seconds
 		Destroy (gameObject, duration);
 	//	Debug.Log ("Bullet instantiated.");
+		if (missileTrail != null) {
+			this.spawnTrail ();
+		}
 	}
 
 	void Update () {
 		// Move forward
 		transform.Translate (Vector3.forward * Time.deltaTime * unitsPerSecond);
+		if (frameCounter % 2 == 0) {
+			this.spawnTrail ();
+		}
+		frameCounter++;
 	}
 
 	void OnTriggerEnter (Collider collision) {
@@ -35,6 +43,12 @@ public class Bullet : MonoBehaviour {
 
 	void spawnExplosion() {
 		ParticleSystem newExplosion = Instantiate (explosionSystem) as ParticleSystem;
+		newExplosion.transform.position = gameObject.transform.position;
+		newExplosion.transform.rotation = Quaternion.identity;
+		newExplosion.Play ();
+	}
+	void spawnTrail() {
+		ParticleSystem newExplosion = Instantiate (missileTrail) as ParticleSystem;
 		newExplosion.transform.position = gameObject.transform.position;
 		newExplosion.transform.rotation = Quaternion.identity;
 		newExplosion.Play ();

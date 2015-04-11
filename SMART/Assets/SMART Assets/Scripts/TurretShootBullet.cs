@@ -7,6 +7,7 @@ public class TurretShootBullet : MonoBehaviour {
 	public float range = 60;
 	public GameObject bullet;
 	public Transform[] fireLocations;
+	public ParticleSystem muzzleFlash;
 
 	private float secondsBetweenBullets;
 	private float lastBulletFire = 0.0f;
@@ -45,6 +46,7 @@ public class TurretShootBullet : MonoBehaviour {
 	void FireBullet() {
 		Transform fireLocation = this.fireLocations [this.fireIndex];
 		Instantiate (this.bullet, fireLocation.position, fireLocation.rotation);
+		Instantiate (this.muzzleFlash, fireLocation.position, fireLocation.rotation);
 		this.lastBulletFire = Time.time;
 		this.fireIndex = (this.fireIndex + 1) % this.fireLocations.Length;
 	}
