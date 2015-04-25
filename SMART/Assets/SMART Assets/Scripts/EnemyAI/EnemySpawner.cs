@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (countEnemy() < enemyCap && Time.fixedTime - lastSpawnTime > cooldown) {
+		if (countEnemy() < (enemyCap + 1) && Time.fixedTime - lastSpawnTime > cooldown) {
 			gameObject.transform.position = randomRotate (gameObject.transform.position, hqPos);
 			int enemyIndex = Random.Range (0, enemies.Length);
 			GameObject newEnemy = Instantiate(enemies[enemyIndex], gameObject.transform.position, 
