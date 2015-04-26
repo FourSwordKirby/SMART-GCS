@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SMART Assets\Scripts\FrameRate.cs">
+    <Files>
+      <File FileName="Assets\SMART Assets\Scripts\Title.cs" Line="1" Column="1" />
+      <File FileName="Assets\SMART Assets\Scripts\FrameRate.cs" Line="18" Column="30" />
+      <File FileName="Assets\SMART Assets\Scripts\Instruction.cs" Line="1" Column="1" />
+      <File FileName="Assets\SMART Assets\Scripts\Explosion.cs" Line="1" Column="1" />
+      <File FileName="Assets\SMART Assets\Scripts\EnemyAI\EnemySpawner.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

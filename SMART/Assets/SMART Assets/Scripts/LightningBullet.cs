@@ -11,6 +11,7 @@ public class LightningBullet : MonoBehaviour {
 	public int rangeOfFire = 5;
 	public int damage = 1;
 	public float coolDownPeriodInSeconds = 2;	//Wait time until next bullet fire
+	public float lightningLife;
 	private float nextBulletAllowed; 		//Window for next bullet fired
 	public ParticleSystem turretExplosionSystem;
 	public ParticleSystem enemyExplosionSystem;
@@ -70,11 +71,10 @@ public class LightningBullet : MonoBehaviour {
 			enemyHealth.subtractHealth(damage);
 		}
 
-		Vector3 posDiff = enemy.transform.position - turret.transform.position;
-		lightningClone.transform.localScale = new Vector3(1,1,posDiff.z);
+		lightningClone.transform.localScale = new Vector3(1,1,Vector3.Distance(enemy.transform.position,turret.transform.position));
 
 		//Deletes the prefab after coolDownPeriodInSeconds
-		Destroy (lightningClone, coolDownPeriodInSeconds);
+		Destroy (lightningClone, lightningLife);
 	
 	}
 	
